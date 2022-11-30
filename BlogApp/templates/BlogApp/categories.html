@@ -4,11 +4,11 @@
 
 {% block contenidoQueCambia %}
 
-<h1>Agregar post:</h1>
+<h1>Agregar categoría:</h1>
 
 <form action="" method="post"> {% csrf_token %}
     <table>
-        {{postForm.as_table}}
+        {{categoryForm.as_table}}
     </table>
     <input type="submit", value="Agregar">
 </form>
