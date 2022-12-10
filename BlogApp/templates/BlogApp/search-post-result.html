@@ -3,11 +3,15 @@
 {% load static %}
 
 {% block changingContent %}
-<div class="container-fluid">
-    <h2 class="display-4">Resultados:</h2><br>
+<div class="container my-5">
     {% for post in posts %}
     <p class="h3">{{post.title}}</p>
-    <p class="h5 text-muted">{{post.author}} {{post.date}}</p><br>
+    <p class="h5 text-muted">{{post.author}} {{post.date}}</p>
+    <p>
+        <a href="{% url 'PostDetail' post.id %}">Ver</a>
+        <a href="{% url 'EditPost' post.id %}">Editar</a>
+        <a href="{% url 'DeletePost' post.id %}">Borrar</a>
+    </p>
     {% endfor %}
 </div>
 {% endblock %}

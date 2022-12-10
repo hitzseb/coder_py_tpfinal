@@ -3,10 +3,10 @@
 {% load static %}
 
 {% block changingContent %}
-<div class="container-fluid">
+<div class="container my-5">
     <form method="post">{% csrf_token %}
-        <p>Estas seguro de que deseas eliminar el post "{{post.title}}"?</p>
-        <input type="submit" value="Eliminar">
+        <p class="h4">Estas seguro de que deseas eliminar el post "{{post.title}}"?</p><br>
+        <input class="btn btn-danger mt-3" type="submit" value="Eliminar">
     </form>
 </div>
 {% endblock %}
