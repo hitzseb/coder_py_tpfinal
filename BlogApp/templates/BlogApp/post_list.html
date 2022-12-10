@@ -4,10 +4,11 @@
 
 {% block changingContent %}
 <div class="container-fluid">
-    <h2>Listado de Posts</h2>
+    <h2 class="display-4">Listado de Posts</h2>
     <ul>
         {% for post in object_list %}
-        <p>{{post.title}}</p>
+        <p class="h3">{{post.title}}</p>
+        <p class="h5 text-muted">{{post.author}} {{post.date}}</p>
         <p>
             <a href="{% url 'PostDetail' post.id %}">Ver</a>
             <a href="{% url 'EditPost' post.id %}">Editar</a>
@@ -15,5 +16,7 @@
         </p>
         {% endfor %}
     </ul>
+    <a class="btn btn-primary" href="{% url 'NewPost' %}">Sign Up</a>
+    <a class="btn btn-primary" href="{% url 'SearchPost' %}">Sign Up</a>
 </div>
 {% endblock %}

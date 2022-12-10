@@ -27,7 +27,7 @@ def home(request):
 def search_post(request):
     return render(request, "BlogApp/search-post.html")
 
-def search(request):
+def search_post_result(request):
     title_views = request.GET['title']
     all_posts = Post.objects.filter(title=title_views)
     return render(request,"BlogApp/search-post-result.html",{"title":title_views,"posts":all_posts})
