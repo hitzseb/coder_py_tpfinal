@@ -2,15 +2,14 @@
 
 {% load static %}
 
-{% block contenidoQueCambia %}
-
-<h1>Agregar categoría:</h1>
-
-<form action="" method="post"> {% csrf_token %}
-    <table>
-        {{categoryForm.as_table}}
-    </table>
-    <input type="submit", value="Agregar">
-</form>
-
+{% block changingContent %}
+<div class="container-fluid">
+    <h2 class="h1">Agregar categoría:</h2>
+    <form action="" method="post"> {% csrf_token %}
+        <table>
+            {{categoryForm.as_table}}
+        </table>
+        <input type="submit" , value="Agregar">
+    </form>
+</div>
 {% endblock %}

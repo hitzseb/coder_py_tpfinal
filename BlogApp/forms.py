@@ -1,15 +1,15 @@
 from django import forms
 
 class AuthorForm(forms.Form):
-    name = forms.CharField(max_length=30)
+    name = forms.CharField()
     contact = forms.EmailField()
 
 class CategoryForm(forms.Form):
-    name = forms.CharField(max_length=20)
+    name = forms.CharField()
 
 class PostForm(forms.Form):
-    title = forms.CharField(max_length=50)
-    date = forms.DateField()
-    content = forms.CharField()
-    author = forms.CharField(max_length=30)
-    category = forms.CharField(max_length=20)
+    title = forms.CharField()
+    date = forms.DateField(widget=forms.SelectDateWidget)
+    content = forms.CharField(widget=forms.Textarea)
+    author = forms.CharField()
+    category = forms.CharField()
