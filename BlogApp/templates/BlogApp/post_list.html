@@ -5,6 +5,12 @@
 {% block changingContent %}
 <div class="container-fluid">
     <h2 class="display-4">Listado de Posts</h2>
+    <div class="m-3">
+        <form action="/BlogApp/search-post-result/" method="get"> {% csrf_token %}
+            <input type="text" name="title" id="title">
+            <input type="submit" value="Buscar">
+        </form>
+    </div>
     <ul>
         {% for post in object_list %}
         <p class="h3">{{post.title}}</p>
@@ -16,7 +22,8 @@
         </p>
         {% endfor %}
     </ul>
-    <a class="btn btn-primary" href="{% url 'NewPost' %}">Sign Up</a>
-    <a class="btn btn-primary" href="{% url 'SearchPost' %}">Sign Up</a>
+    <a class="btn btn-primary m-3" href="{% url 'NewPost' %}">
+        <p class="h5">Nuevo post</p>
+    </a>
 </div>
 {% endblock %}
