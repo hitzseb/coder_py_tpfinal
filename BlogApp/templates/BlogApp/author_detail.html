@@ -1,0 +1,11 @@
+{% extends "BlogApp/base.html" %}
+
+{% load static %}
+
+{% block changingContent %}
+<div class="container my-5">
+    <h2 class="h4">{{author.name}}</h2>
+    <p class="text-muted">{{author.contact}}</p><br>
+    <a class="btn btn-primary" href="{% url 'AuthorList' %}">Regresar</a>
+</div>
+{% endblock %}

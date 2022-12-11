@@ -1,0 +1,14 @@
+{% extends "BlogApp/base.html" %}
+
+{% load static %}
+
+{% block changingContent %}
+<div class="container my-5">
+    <form action="" method="post"> {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table><br>
+        <input class="btn btn-primary" type="submit" value="Guardar">
+    </form>
+</div>
+{% endblock %}

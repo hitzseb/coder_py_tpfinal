@@ -1,0 +1,17 @@
+{% extends "BlogApp/base.html" %}
+
+{% load static %}
+
+{% block changingContent %}
+<div class="container my-5">
+    {% for author in authors %}
+    <p class="h3">{{author.name}}</p>
+    <p class="text-muted">{{author.contact}}</p>
+    <p>
+        <a href="{% url 'AuthorDetail' author.id %}">Ver</a>
+        <a href="{% url 'AuthorUpdate' author.id %}">Editar</a>
+        <a href="{% url 'AuthorDelete' author.id %}">Borrar</a>
+    </p>
+    {% endfor %}
+</div>
+{% endblock %}

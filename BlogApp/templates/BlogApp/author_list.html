@@ -1,0 +1,22 @@
+{% extends "BlogApp/base.html" %}
+
+{% load static %}
+
+{% block changingContent %}
+<div class="container my-5">
+    <form class="input-group" action="/BlogApp/author/search" method="get"> {% csrf_token %}
+        <input class="input-group-text" type="text" name="name" id="name">
+        <input class="btn btn-primary" type="submit" value="Buscar">
+    </form><br>
+    {% for author in object_list %}
+    <p class="h4">{{author.name}}</p>
+    <p class="text-muted">{{author.contact}}</p>
+    <p>
+        <a href="{% url 'AuthorDetail' author.id %}">Ver</a>
+        <a href="{% url 'AuthorUpdate' author.id %}">Editar</a>
+        <a href="{% url 'AuthorDelete' author.id %}">Borrar</a>
+    </p><br>
+    {% endfor %}
+    <a class="btn btn-primary" href="{% url 'AuthorCreate' %}">Nuevo autor</a>
+</div>
+{% endblock %}

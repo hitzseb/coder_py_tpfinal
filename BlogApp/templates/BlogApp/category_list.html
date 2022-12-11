@@ -1,0 +1,21 @@
+{% extends "BlogApp/base.html" %}
+
+{% load static %}
+
+{% block changingContent %}
+<div class="container my-5">
+    <form class="input-group" action="/BlogApp/category/search" method="get"> {% csrf_token %}
+        <input class="input-group-text" type="text" name="name" id="name">
+        <input class="btn btn-primary" type="submit" value="Buscar">
+    </form><br>
+    {% for category in object_list %}
+    <p class="h4">{{category.name}}</p>
+    <p>
+        <a href="{% url 'CategoryDetail' category.id %}">Ver</a>
+        <a href="{% url 'CategoryUpdate' category.id %}">Editar</a>
+        <a href="{% url 'CategoryDelete' category.id %}">Borrar</a>
+    </p><br>
+    {% endfor %}
+    <a class="btn btn-primary" href="{% url 'CategoryCreate' %}">Nueva categoría</a>
+</div>
+{% endblock %}

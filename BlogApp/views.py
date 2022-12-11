@@ -11,84 +11,20 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 def home(request):
     return render(request, 'BlogApp/index.html')
 
-# def posts(request):
-#     if request.method == 'POST':
-#         postForm = PostForm(request.POST)
-#         print(postForm)
-#         if postForm.is_valid:
-#             postData = postForm.cleaned_data
-#             post = Post(title = postData['title'], date = postData['date'], content = postData['content'], author = postData['author'], category = postData['category'])
-#             post.save()
-#             return render(request, 'BlogApp/index.html')
-#     else:
-#         postForm = PostForm()
-#     return render(request, 'BlogApp/posts.html', {'postForm':postForm})
+# POST
 
 def search_post(request):
-    return render(request, "BlogApp/search-post.html")
-
-def search_post_result(request):
     title_views = request.GET['title']
     all_posts = Post.objects.filter(title=title_views)
-    return render(request,"BlogApp/search-post-result.html",{"title":title_views,"posts":all_posts})
-
-# def categories(request):
-#     if request.method == 'POST':
-#         categoryForm = AuthorForm(request.POST)
-#         print(categoryForm)
-#         if categoryForm.is_valid:
-#             categoryData = categoryForm.cleaned_data
-#             category = Category(name = categoryData['name'])
-#             category.save()
-#             return render(request, 'BlogApp/index.html')
-#     else:
-#         categoryForm = CategoryForm()
-#     return render(request, 'BlogApp/categories.html', {'categoryForm':categoryForm})
-
-# def authors(request):
-#     if request.method == 'POST':
-#         authorForm = AuthorForm(request.POST)
-#         print(authorForm)
-#         if authorForm.is_valid:
-#             authorData = authorForm.cleaned_data
-#             author = Author(name = authorData['name'], contact = authorData['contact'])
-#             author.save()
-#             return render(request, 'BlogApp/index.html')
-#     else:
-#         authorForm = AuthorForm()
-#     return render(request, 'BlogApp/authors.html', {'authorForm':authorForm})
-
-# def apiposts(request):
-#     all_posts = Post.objects.all()
-#     return HttpResponse(serializers.serialize('json', all_posts))
-
-# def find_posts(request):
-#     all_posts = Post.objects.all()
-#     return HttpResponse(serializers.serialize('json', all_posts))
-
-# def new_post(request):
-#     post = Post(title = 'TituloTest', date = date.today(), content = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam earum rem, voluptate nostrum repudiandae aliquid ut quae quidem hic numquam quasi magnam dolore error facilis sed nobis perspiciatis eius dignissimos.', author = 'Author', category = 'Category' )
-#     post.save()
-#     return HttpResponse(f'El post {post.title} ha sido creado')
-
-# def edit_post(request):
-#     post_title = 'TituloTest'
-#     Post.objects.filter(title = post_title).update(title = 'TituloTestEditado')
-#     return HttpResponse(f'El titulo {post_title} ha sido modificado')
-
-# def delete_post(request):
-#     post_title = 'TituloTestEditado'
-#     post = Post.objects.get(title = post_title)
-#     post.delete()
-#     return HttpResponse(f'el post {post.title} ha sido eliminado')
+    return render(request,"BlogApp/post_search_result.html",{"title":title_views,"posts":all_posts})
 
 class PostList(ListView):
     model = Post
-    template = 'BlogApp/post_list.html'
+    template = '/BlogApp/post_list.html'
 
 class PostDetail(DetailView):
     model = Post
-    template = 'BlogApp/post_detail.html'
+    template = '/BlogApp/post_detail.html'
 
 class PostCreate(CreateView):
     model = Post
@@ -103,3 +39,61 @@ class PostUpdate(UpdateView):
 class PostDelete(DeleteView):
     model = Post
     success_url = '/BlogApp/post/list/'
+
+# CATEGORY
+
+def search_category(request):
+    name_views = request.GET['name']
+    all_categories = Category.objects.filter(name=name_views)
+    return render(request,"BlogApp/category_search_result.html",{"name":name_views,"categories":all_categories})
+
+class CategoryList(ListView):
+    model = Category
+    template = '/BlogApp/category_list.html'
+
+class CategoryDetail(DetailView):
+    model = Category
+    template = '/BlogApp/category_detail.html'
+
+class CategoryCreate(CreateView):
+    model = Category
+    fields = '__all__'
+    success_url = '/BlogApp/category/list/'
+
+class CategoryUpdate(UpdateView):
+    model = Category
+    fields = '__all__'
+    success_url = '/BlogApp/category/list/'
+
+class CategoryDelete(DeleteView):
+    model = Category
+    success_url = '/BlogApp/category/list/'
+
+# AUTHOR
+
+def search_author(request):
+    name_views = request.GET['name']
+    all_authors = Author.objects.filter(name=name_views)
+    return render(request,"BlogApp/author_search_result.html",{"name":name_views,"authors":all_authors})
+
+class AuthorList(ListView):
+    model = Author
+    template = '/BlogApp/author_list.html'
+
+class AuthorDetail(DetailView):
+    model = Author
+    template = '/BlogApp/author_detail.html'
+
+class AuthorCreate(CreateView):
+    model = Author
+    fields = '__all__'
+    success_url = '/BlogApp/author/list/'
+
+class AuthorUpdate(UpdateView):
+    model = Author
+    fields = '__all__'
+    success_url = '/BlogApp/author/list/'
+
+class AuthorDelete(DeleteView):
+    model = Author
+    success_url = '/BlogApp/author/list/'
