@@ -5,7 +5,7 @@
 {% block changingContent %}
 <div class="container my-5">
     <form class="input-group" action="/BlogApp/post/search" method="get"> {% csrf_token %}
-        <input class="input-group-text" type="text" name="title" id="title">
+        <input class="input-group-text" type="text" placeholder="Post por título" name="title" id="title">
         <input class="btn btn-primary" type="submit" value="Buscar">
     </form><br>
     {% for post in object_list %}

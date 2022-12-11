@@ -44,16 +44,12 @@ class PostDelete(DeleteView):
 
 def search_category(request):
     name_views = request.GET['name']
-    all_categories = Category.objects.filter(name=name_views)
-    return render(request,"BlogApp/category_search_result.html",{"name":name_views,"categories":all_categories})
+    all_posts = Post.objects.filter(category=name_views)
+    return render(request,"BlogApp/category_search_result.html",{"name":name_views,"posts":all_posts})
 
 class CategoryList(ListView):
     model = Category
     template = '/BlogApp/category_list.html'
-
-class CategoryDetail(DetailView):
-    model = Category
-    template = '/BlogApp/category_detail.html'
 
 class CategoryCreate(CreateView):
     model = Category
@@ -73,16 +69,12 @@ class CategoryDelete(DeleteView):
 
 def search_author(request):
     name_views = request.GET['name']
-    all_authors = Author.objects.filter(name=name_views)
-    return render(request,"BlogApp/author_search_result.html",{"name":name_views,"authors":all_authors})
+    all_posts = Post.objects.filter(author=name_views)
+    return render(request,"BlogApp/author_search_result.html",{"name":name_views,"posts":all_posts})
 
 class AuthorList(ListView):
     model = Author
     template = '/BlogApp/author_list.html'
-
-class AuthorDetail(DetailView):
-    model = Author
-    template = '/BlogApp/author_detail.html'
 
 class AuthorCreate(CreateView):
     model = Author

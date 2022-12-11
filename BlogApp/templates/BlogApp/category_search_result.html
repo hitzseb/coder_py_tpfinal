@@ -4,12 +4,13 @@
 
 {% block changingContent %}
 <div class="container my-5">
-    {% for category in categories %}
-    <p class="h3">{{category.name}}</p>
+    {% for post in posts %}
+    <p class="h3">{{post.title}}</p>
+    <p class="text-muted">{{post.author}} {{post.date}}</p>
     <p>
-        <a href="{% url 'CategoryDetail' category.id %}">Ver</a>
-        <a href="{% url 'CategoryUpdate' category.id %}">Editar</a>
-        <a href="{% url 'CategoryDelete' category.id %}">Borrar</a>
+        <a href="{% url 'PostDetail' post.id %}">Ver</a>
+        <a href="{% url 'PostUpdate' post.id %}">Editar</a>
+        <a href="{% url 'PostDelete' post.id %}">Borrar</a>
     </p>
     {% endfor %}
 </div>
